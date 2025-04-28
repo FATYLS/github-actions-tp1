@@ -9,3 +9,7 @@ Description de mon projet.
 ## Fonctionnalités
 - Fonctionnalité 1
 - Fonctionnalité 2
+
+# MLOps GitHub Actions TP
+
+![Build Status](https://github.com/FATYLS/github-actions-tp1/actions/workflows/badge.yml/badge.svg)
