@@ -8,3 +8,5 @@ def test_predict_negative():
 
 def test_predict_neutral():
     assert predict_sentiment("The sky is blue") == "neutral"
+# Dans model.py, après la fonction `predict_sentiment`, tu peux ajouter :
+print("Modification pour tester la Pull Request")
