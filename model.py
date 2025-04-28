@@ -1,57 +1,29 @@
-"""
-Module pour analyser le sentiment d'un texte en fonction de mots-clés.
-"""
+# model.py
 
-def predict_sentiment(text):
+import random
+import json
+
+# Fonction simulant l'évaluation d'un modèle
+def evaluate_model():
     """
-    Prédit le sentiment d'un texte donné.
-
-    Cette fonction analyse le texte pour détecter des mots-clés associés à des sentiments
-    positifs, négatifs ou neutres. Elle renvoie "positive", "negative" ou "neutral" en fonction
-    du texte d'entrée.
-
-    Arguments :
-    text : str
-        Le texte à analyser.
-
-    Retourne :
-    str
-        "positive" si le texte contient des mots-clés positifs, 
-        "negative" si le texte contient des mots-clés négatifs, 
-        ou "neutral" si aucun des deux n'est détecté.
+    Cette fonction simule l'évaluation d'un modèle de machine learning
+    et génère des métriques de performance comme l'accuracy, la precision,
+    le recall et le F1-score.
     """
-    if not text:
-        return "neutral"
+    metrics = {
+        "accuracy": round(random.uniform(0.85, 0.95), 3),  # Précision du modèle (entre 0.85 et 0.95)
+        "precision": round(random.uniform(0.80, 0.98), 3),  # Précision de la classification
+        "recall": round(random.uniform(0.80, 0.98), 3),  # Rappel de la classification
+        "f1_score": round(random.uniform(0.80, 0.98), 3)  # Score F1 de la classification
+    }
     
-    if "happy" in text.lower() or "good" in text.lower():
-        return "positive"
-
-    if "sad" in text.lower() or "bad" in text.lower():
-        return "negative"
+    # Sauvegarde des métriques dans un fichier JSON
+    with open("metrics.json", "w") as f:
+        json.dump(metrics, f, indent=2)
     
-    return "neutral"
+    print(f"Model metrics: {metrics}")  # Affiche les métriques générées
+    return metrics  # Retourne les métriques pour une utilisation ultérieure
 
+# Si le script est exécuté directement, lance l'évaluation
 if __name__ == "__main__":
-    """
-    Point d'entrée principal du module, exécuté lors du lancement direct du fichier.
-    
-    Teste la fonction predict_sentiment avec plusieurs exemples de textes et affiche les résultats.
-    """
-    # Quelques exemples de texte à tester
-    print(predict_sentiment("I am feeling so happy today!"))  # Devrait afficher "positive"
-    print(predict_sentiment("This is a sad day."))  # Devrait afficher "negative"
-    print(predict_sentiment("It was a good experience."))  # Devrait afficher "positive"
-    print(predict_sentiment("Nothing special, just neutral."))  # Devrait afficher "neutral"
-
-def some_function():
-    """
-    Fonction de test retournant un résultat erroné.
-
-    Cette fonction est un exemple de bug introduit, car elle retourne un résultat incorrect
-    pour un texte attendu.
-
-    Retourne :
-    str
-        "positif", ce qui est une erreur introduite volontairement.
-    """
-    return "positif"  # Bug introduit ici
+    evaluate_model()
