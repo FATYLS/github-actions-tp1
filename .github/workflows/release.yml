@@ -1,0 +1,24 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # Cette règle applique le workflow aux tags commençant par 'v'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Utilisation du token d'accès GitHub
+      with:
+        tag_name: ${{ github.ref_name }}  # Le nom du tag comme nom de la release
+        release_name: Release ${{ github.ref_name }}  # Nom de la release
+        draft: false  # Si true, la release sera en mode brouillon
+        prerelease: false  # Si true, la release sera marquée comme pré-release

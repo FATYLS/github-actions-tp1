@@ -25,3 +25,5 @@ jobs:
 
     - name: Test the Docker image
       run: docker run model:latest
+    - name: Build the Docker image
+      run: docker build ./path/to/Dockerfile --file ./path/to/Dockerfile --tag model:latest
