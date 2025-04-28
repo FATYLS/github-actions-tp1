@@ -3,7 +3,7 @@ def predict_sentiment(text):
         return "neutral"
     
     if "happy" in text.lower() or "good" in text.lower():
-        return "positif"
+        return "positive"
    
 
     if "sad" in text.lower() or "bad" in text.lower():
