@@ -1,0 +1,25 @@
+name: PR Comment
+
+# Définition des permissions
+permissions:
+  pull-requests: write  # Permet de commenter les pull requests
+
+on:
+  pull_request:
+    types: [opened]  # Déclenche ce workflow lorsque la PR est ouverte
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest  # Exécute le workflow sur un environnement Ubuntu
+
+    steps:
+      - name: Comment on PR
+        uses: actions/github-script@v6  # Utilise l'action github-script
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Thanks for the PR! The automated tests will run shortly.'  # Le message du commentaire
+            })
